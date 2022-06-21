@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.workbench.dao.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.example.workbench.domain.Product">
+    <id column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="new_price" jdbcType="DOUBLE" property="newPrice" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="series" jdbcType="VARCHAR" property="series" />
+    <result column="old_price" jdbcType="DOUBLE" property="oldPrice" />
+    <result column="image_transform" jdbcType="VARCHAR" property="imageTransform" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="detail_image" jdbcType="VARCHAR" property="detailImage" />
+    <result column="image_list" jdbcType="VARCHAR" property="imageList" />
+    <result column="avaliable" jdbcType="INTEGER" property="available" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pid, name, new_price, type, image, create_time, create_by, update_time, update_by, 
+    series, old_price, image_transform, description, detail_image, image_list
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_product
+    where pid = #{pid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_product
+    where pid = #{pid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.workbench.domain.Product">
+    insert into tbl_product (pid, name, new_price, 
+      type, image, create_time, 
+      create_by, update_time, update_by, 
+      series, old_price, image_transform, 
+      description, detail_image, image_list
+      )
+    values (#{pid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{newPrice,jdbcType=DOUBLE}, 
+      #{type,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{series,jdbcType=VARCHAR}, #{oldPrice,jdbcType=DOUBLE}, #{imageTransform,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{detailImage,jdbcType=VARCHAR}, #{imageList,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.workbench.domain.Product">
+    insert into tbl_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="newPrice != null">
+        new_price,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="series != null">
+        series,
+      </if>
+      <if test="oldPrice != null">
+        old_price,
+      </if>
+      <if test="imageTransform != null">
+        image_transform,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="detailImage != null">
+        detail_image,
+      </if>
+      <if test="imageList != null">
+        image_list,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="newPrice != null">
+        #{newPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="series != null">
+        #{series,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPrice != null">
+        #{oldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="imageTransform != null">
+        #{imageTransform,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="detailImage != null">
+        #{detailImage,jdbcType=VARCHAR},
+      </if>
+      <if test="imageList != null">
+        #{imageList,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.workbench.domain.Product">
+    update tbl_product
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="newPrice != null">
+        new_price = #{newPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="series != null">
+        series = #{series,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPrice != null">
+        old_price = #{oldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="imageTransform != null">
+        image_transform = #{imageTransform,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="detailImage != null">
+        detail_image = #{detailImage,jdbcType=VARCHAR},
+      </if>
+      <if test="imageList != null">
+        image_list = #{imageList,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.workbench.domain.Product">
+    update tbl_product
+    set name = #{name,jdbcType=VARCHAR},
+      new_price = #{newPrice,jdbcType=DOUBLE},
+      type = #{type,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      series = #{series,jdbcType=VARCHAR},
+      old_price = #{oldPrice,jdbcType=DOUBLE},
+      image_transform = #{imageTransform,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      detail_image = #{detailImage,jdbcType=VARCHAR},
+      image_list = #{imageList,jdbcType=VARCHAR}
+    where pid = #{pid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectProductList" resultMap="BaseResultMap">
+    select p.pid, p.name, new_price, old_price, d.text as type, p.image, image_transform, create_time, u.username as create_by, update_time,
+           update_by, s.name as series, s.avaliable as available, s.brand as brand, s.name as sname
+    from tbl_product p
+           join tbl_dic_value d on p.type=d.id
+           join tbl_product_series s on p.series=s.sid
+           join tbl_user u on u.uid=p.create_by
+    order by create_time desc
+  </select>
+
+  <select id="selectProductBySid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from tbl_product
+    where series = #{sid}
+  </select>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.workbench.dao.ProductRemarkMapper">
+  <resultMap id="BaseResultMap" type="com.example.workbench.domain.ProductRemark">
+    <id column="rid" jdbcType="VARCHAR" property="rid" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="remark_by" jdbcType="VARCHAR" property="remarkBy" />
+    <result column="remark_time" jdbcType="VARCHAR" property="remarkTime" />
+    <result column="score" jdbcType="VARCHAR" property="score" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rid, content, pid, remark_by, remark_time, score
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_product_remark
+    where rid = #{rid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_product_remark
+    where rid = #{rid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.workbench.domain.ProductRemark">
+    insert into tbl_product_remark (rid, content, pid, 
+      remark_by, remark_time, score
+      )
+    values (#{rid,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{remarkBy,jdbcType=VARCHAR}, #{remarkTime,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.workbench.domain.ProductRemark">
+    insert into tbl_product_remark
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        rid,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="remarkBy != null">
+        remark_by,
+      </if>
+      <if test="remarkTime != null">
+        remark_time,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rid != null">
+        #{rid,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkBy != null">
+        #{remarkBy,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkTime != null">
+        #{remarkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.workbench.domain.ProductRemark">
+    update tbl_product_remark
+    <set>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkBy != null">
+        remark_by = #{remarkBy,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkTime != null">
+        remark_time = #{remarkTime,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rid = #{rid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.workbench.domain.ProductRemark">
+    update tbl_product_remark
+    set content = #{content,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      remark_by = #{remarkBy,jdbcType=VARCHAR},
+      remark_time = #{remarkTime,jdbcType=VARCHAR},
+      score = #{score,jdbcType=VARCHAR}
+    where rid = #{rid,jdbcType=VARCHAR}
+  </update>
+</mapper>

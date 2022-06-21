@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.workbench.dao.SkuMapper">
+  <resultMap id="BaseResultMap" type="com.example.workbench.domain.Sku">
+    <id column="sku_id" jdbcType="VARCHAR" property="skuId" />
+    <result column="color_image" jdbcType="VARCHAR" property="colorImage" />
+    <result column="set_meal" jdbcType="VARCHAR" property="setMeal" />
+    <result column="sid" jdbcType="VARCHAR" property="sid" />
+    <result column="product_num" jdbcType="INTEGER" property="productNum" />
+    <result column="cid" jdbcType="VARCHAR" property="cid" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="single_total_price" jdbcType="DOUBLE" property="singleTotalPrice" />
+    <result column="pay_order_no" jdbcType="VARCHAR" property="payOrderNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sku_id, color_image, set_meal, sid, product_num, cid, create_time, create_by, single_total_price, 
+    pay_order_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_sku
+    where sku_id = #{skuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tbl_sku
+    where sku_id = #{skuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.workbench.domain.Sku">
+    insert into tbl_sku (sku_id, color_image, set_meal, 
+      sid, product_num, cid, 
+      create_time, create_by, single_total_price, 
+      pay_order_no)
+    values (#{skuId,jdbcType=VARCHAR}, #{colorImage,jdbcType=VARCHAR}, #{setMeal,jdbcType=VARCHAR}, 
+      #{sid,jdbcType=VARCHAR}, #{productNum,jdbcType=INTEGER}, #{cid,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{singleTotalPrice,jdbcType=DOUBLE}, 
+      #{payOrderNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.workbench.domain.Sku">
+    insert into tbl_sku
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="colorImage != null">
+        color_image,
+      </if>
+      <if test="setMeal != null">
+        set_meal,
+      </if>
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="productNum != null">
+        product_num,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="singleTotalPrice != null">
+        single_total_price,
+      </if>
+      <if test="payOrderNo != null">
+        pay_order_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="skuId != null">
+        #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="colorImage != null">
+        #{colorImage,jdbcType=VARCHAR},
+      </if>
+      <if test="setMeal != null">
+        #{setMeal,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="productNum != null">
+        #{productNum,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="singleTotalPrice != null">
+        #{singleTotalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="payOrderNo != null">
+        #{payOrderNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.workbench.domain.Sku">
+    update tbl_sku
+    <set>
+      <if test="colorImage != null">
+        color_image = #{colorImage,jdbcType=VARCHAR},
+      </if>
+      <if test="setMeal != null">
+        set_meal = #{setMeal,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null">
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="productNum != null">
+        product_num = #{productNum,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="singleTotalPrice != null">
+        single_total_price = #{singleTotalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="payOrderNo != null">
+        pay_order_no = #{payOrderNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sku_id = #{skuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.workbench.domain.Sku">
+    update tbl_sku
+    set color_image = #{colorImage,jdbcType=VARCHAR},
+      set_meal = #{setMeal,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=VARCHAR},
+      product_num = #{productNum,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      single_total_price = #{singleTotalPrice,jdbcType=DOUBLE},
+      pay_order_no = #{payOrderNo,jdbcType=VARCHAR}
+    where sku_id = #{skuId,jdbcType=VARCHAR}
+  </update>
+</mapper>
